@@ -1,86 +1,51 @@
-$primary-color: #3498db;
-$secondary-color: #2ecc71;
-$font-color: #333;
-$background-color: #f4f4f4;
-$header-height: 60px;
-$footer-height: 40px;
+@import 'variables';
 
-@mixin flex-center {
+.app {
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@mixin box-shadow {
-    box-shadow: 0 2px 4px black;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
-    height: $header-height;
-    background-color: $primary-color;
-    color: white;
-    @include flex-center;
+  height: $header-height;
+  color: black;
+  @include flex-center;
+  @include no-margin-padding;
 }
 
-h1, h2, h3 {
-    @include flex-center;
-    margin-top: 0;
-    padding: 0;
+main {
+  flex: 1;
+  padding: 20px;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    color: $font-color;
-    background-color: $background-color;
-    margin: 0;
+.home {
+  @include flex-center;
+  flex-direction: column;
+  margin: 40px;
+}
 
-    .home {
-        @include flex-center;
-        margin: 40px;
-        flex-direction: column;
-    }
+.tv-list, .movie-list, .people-list {
+  @include lists;
+}
 
-    .movie-list {
-        img {
-            width: 100%;
-            height: auto;
-        }
-    }
+.search-bar {
+  outline: 0;
+  text-indent: 12px;
+  width: 19rem;
+  padding: 0.4rem 0;
+  border-radius: 12px;
+  border: 2px solid #ccc;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 
-    .search-bar {
-        margin: 20px;
-        padding: 10px;
-        border: 1px solid $primary-color;
-        border-radius: 5px;
-        width: 300px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        input {
-            border: none;
-            outline: none;
-            padding: 5px;
-            width: 80%;
-            border-radius: 5px;
-        }
-
-        button {
-            background-color: $primary-color;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    }
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 5px $primary-color;
+  }
 }
 
 footer {
-    height: $footer-height;
-    background-color: $primary-color;
-    color: white;
-    @include flex-center;
-    margin: 0;
-    padding: 0;
+  height: $footer-height;
+  color: black;
+  @include flex-center;
+  @include no-margin-padding;
 }

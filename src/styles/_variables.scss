@@ -1,0 +1,42 @@
+// Variables
+$primary-color: #4193c9;
+$secondary-color: #822ecc;
+$font-color: #333;
+$background-color: #f4f4f4;
+$header-height: 60px;
+$footer-height: 40px;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin no-margin-padding {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin box-shadow {
+  box-shadow: 0 0px 15px black;
+}
+
+@mixin lists {
+  @include flex-center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  img {
+    width: 17%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+      cursor: pointer;
+      @include box-shadow;
+    }
+  }
+}
