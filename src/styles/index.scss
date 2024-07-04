@@ -7,8 +7,10 @@ html, body {
 
 body {
   font-family: 'Arial', sans-serif;
-  color: $font-color;
-  background-color: $background-color;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin: 0;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }

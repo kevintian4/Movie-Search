@@ -6,6 +6,24 @@ $background-color: #f4f4f4;
 $header-height: 60px;
 $footer-height: 40px;
 
+// Light mode colors
+$light-text-color: #333;
+$light-background-color: #f4f4f4;
+
+// Dark mode colors
+$dark-text-color: #f4f4f4;
+$dark-background-color: #333;
+
+:root {
+  --text-color: #{$light-text-color};
+  --background-color: #{$light-background-color};
+}
+
+body.dark-mode {
+  --text-color: #{$dark-text-color};
+  --background-color: #{$dark-background-color};
+}
+
 // Mixins
 @mixin flex-center {
   display: flex;

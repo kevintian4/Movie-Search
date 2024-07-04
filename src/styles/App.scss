@@ -6,11 +6,10 @@
   min-height: 100vh;
 }
 
-header {
-  height: $header-height;
-  color: black;
+header, footer {
+  color: var(--text-color);
+  background-color: var(--background-color);
   @include flex-center;
-  @include no-margin-padding;
 }
 
 main {
@@ -41,11 +40,4 @@ main {
     border-color: $primary-color;
     box-shadow: 0 0 5px $primary-color;
   }
-}
-
-footer {
-  height: $footer-height;
-  color: black;
-  @include flex-center;
-  @include no-margin-padding;
 }

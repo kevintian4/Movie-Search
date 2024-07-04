@@ -1,7 +1,9 @@
+import { Suspense, lazy } from 'react';
 import { useLocation } from 'react-router-dom';
-import PeopleList from '../components/PeopleList';
-import MovieList from '../components/MovieList';
-import TVList from '../components/TVList';
+
+const PeopleList = lazy(() => import('../components/PeopleList'));
+const MovieList = lazy(() => import('../components/MovieList'));
+const TVList = lazy(() => import('../components/TVList'));
 
 function SearchResults() {
   const location = useLocation();
@@ -16,11 +18,11 @@ function SearchResults() {
       {results.length === 0 ? (
         <h1>No results found...</h1>
       ) : (
-        <>
+        <Suspense fallback={<div>Loading Components...</div>}>
           <MovieList items={movies} />
           <TVList items={tvShows} />
           <PeopleList items={people} />
-        </>
+        </Suspense>
       )}
     </>
   );
