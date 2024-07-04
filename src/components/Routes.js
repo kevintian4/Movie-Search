@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
-import MovieList from "../pages/MovieList";
+import SearchResults from "../pages/SearchResults";
 import MovieDetails from "../pages/MovieDetails";
 import NotFound from "../pages/NotFound";
 
@@ -9,7 +9,7 @@ function AppRoutes() {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/search" element={<MovieList />} />
+                <Route path="/search" element={<SearchResults />} />
                 <Route path="/movie/:id" element={<MovieDetails />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
