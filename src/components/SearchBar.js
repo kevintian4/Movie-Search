@@ -6,8 +6,16 @@ function SearchBar({ onSearch }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const results = await searchMulti(query);
-    onSearch(query, results);
+    const promises = [];
+
+    for(let i = 1; i <= 5; i++) {
+      promises.push(searchMulti(query, i));
+    }
+    
+    const resultsArray = await Promise.all(promises);
+    const allResults = resultsArray.flat();
+
+    onSearch(query, allResults);
     setQuery('');
   };
 
