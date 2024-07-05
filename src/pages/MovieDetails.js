@@ -1,9 +1,10 @@
-function MovieDetails() {
-  return (
-    <div>
-      <h2>Movie Details</h2>
-    </div>
-  );
+function MovieDetails(movieId) {
+    return (
+        <div>
+            <h1>Movie Details</h1>
+            <p>Movie ID: {movieId}</p>
+        </div>
+    );
 }
 
 export default MovieDetails;

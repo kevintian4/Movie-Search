@@ -1,20 +1,15 @@
-import React from 'react';
+import { TVCard } from './TVCard';
 
 function TVList({ items }) {
   return (
     <>
-      <h2>TV Shows</h2>
+      {items.length > 0 && <h2 className="list-header">TV Shows</h2>}
       <div className="tv-list">
         {items.length === 0 ? (
           <></>
         ) : (
-          items.map((tv) => (
-            <>
-              <img
-                src={`https://image.tmdb.org/t/p/original${tv.poster_path}`}
-                alt={tv.title || 'TV Show'}
-              />
-            </>
+          items.map((show) => (
+            <TVCard key={show.id} show={show} />
           ))
         )}
       </div>

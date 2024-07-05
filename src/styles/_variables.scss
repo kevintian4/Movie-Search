@@ -45,10 +45,13 @@ body.dark-mode {
   flex-wrap: wrap;
   gap: 20px;
 
-  img {
+  div {
     width: 17%;
-    max-width: 100%;
-    height: auto;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
     transition: box-shadow 0.2s ease;
 

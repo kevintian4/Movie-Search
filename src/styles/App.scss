@@ -20,11 +20,15 @@ main {
 .home {
   @include flex-center;
   flex-direction: column;
-  margin: 40px;
 }
 
 .tv-list, .movie-list, .people-list {
   @include lists;
+}
+
+.list-header {
+  font-size: 1.5rem;
+  margin-top: 1.5rem 0 1rem;
 }
 
 .search-bar {

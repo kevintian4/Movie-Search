@@ -1,24 +1,22 @@
+import { PersonCard } from './PersonCard';
+
 function PeopleList({ items }) {
-	return (
-		<>
-			<h2>People</h2>
-			<div className="people-list">
-			{items.length === 0 ? (
-					<></>
-			) : (
-					<>
-							{items.map((person) => (
-									<>
-									<img src={`https://image.tmdb.org/t/p/original${person.profile_path}`} alt={person.name} />
-									<h3>{person.name}</h3>
-									</>
-							))}
-					</>
-			)}
-			</div>
-		</>
-	);
+  return (
+    <>
+      {items.length > 0 && <h2 className="list-header">People</h2>}
+      <div className="people-list">
+        {items.length === 0 ? (
+          <></>
+        ) : (
+          items.map((person) => (
+            <PersonCard key={person.id} person={person} />
+          ))
+        )}
+      </div>
+    </>
+  );
 }
-  
-  export default PeopleList;
+
+export default PeopleList;
+
   
