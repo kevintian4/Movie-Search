@@ -1,5 +1,4 @@
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
-console.log(API_KEY);
 
 export async function searchMulti(query, pageNumber) {
   const url = `https://api.themoviedb.org/3/search/multi?query=${query}&language=en-US&page=${pageNumber}`;
