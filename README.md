@@ -1,3 +1,8 @@
-## Interface
-![image](https://github.com/kevintian4/movie-search-new/assets/92705109/577210ee-dde9-4283-9a63-5bfcc34bea7d)
-![image](https://github.com/kevintian4/movie-search-new/assets/92705109/8f6a92af-a19c-4457-878a-94ac7abb498a)
+# Interface
+### Home Page (In progress)
+![image](https://github.com/kevintian4/movie-search-new/assets/92705109/2a9a46ba-e85a-46a5-9e97-8ba2803e4aa5)
+### Movie Search Results
+![image](https://github.com/kevintian4/movie-search-new/assets/92705109/88e2ca05-c5df-4bb5-a1f0-8770c2b28af3)
+### Movie Details
+![image](https://github.com/kevintian4/movie-search-new/assets/92705109/96a035d3-c333-4f0c-919f-4fb5c7ac9b35)
+
