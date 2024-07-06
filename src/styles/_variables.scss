@@ -1,8 +1,8 @@
 // Variables
 $primary-color: #4193c9;
 $secondary-color: #822ecc;
-$font-color: #333;
-$background-color: #f4f4f4;
+$font-color: #F5F5DC;
+$background-color: #1A1A1A;
 $header-height: 60px;
 $footer-height: 40px;
 
@@ -71,8 +71,4 @@ $footer-height: 40px;
   .card:hover .card-title {
     opacity: 1;
   }
-}
-
-.tv-list, .movie-list, .people-list {
-  @include lists;
 }

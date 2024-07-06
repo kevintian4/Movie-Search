@@ -10,6 +10,7 @@ function Home() {
 
   return (
     <div className="home" id="home-page">
+      <h1>Movie Search App</h1>
       <SearchBar onSearch={handleSearch} />
     </div>
   );

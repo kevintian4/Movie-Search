@@ -6,8 +6,27 @@
   min-height: 100vh;
 }
 
-header, footer {
+header, footer{
   @include flex-center;
+  height: 3rem;
+}
+
+footer {
+  margin-top: 0.5rem;
+}
+
+header {
+  position: relative;
+  background-color: lighten($background-color, 5%);
+
+  .header-button {
+    outline: 0;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
 }
 
 main {
@@ -40,7 +59,7 @@ main {
 }
 
 
-.tv-list, .movie-list, .people-list {
+.item-list {
   @include lists;
   margin: 0 2rem;
 }
@@ -74,27 +93,6 @@ main {
   }
 }
 
-#return-home-button {
-  @include border-radius;
-  position: absolute;
-  outline: 0;
-  border: none;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 0.5rem 1rem;
-  background-color: $primary-color;
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: darken($primary-color, 10%);
-  }
-}
-
 main {
   padding: 20px;
 
@@ -103,7 +101,7 @@ main {
   }
 }
 
-#movie-details {
+.details {
   max-width: 1000px;
   margin: auto;
   background-color: #fff;
@@ -120,7 +118,7 @@ main {
 }
 
 
-#movie-header {
+.details-header{
   position: relative;
   background-size: cover;
   background-position: center;
@@ -135,11 +133,11 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.65);
     z-index: 1;
   }
 
-  &-content {
+  .header-content {
     position: relative;
     z-index: 2;
     padding: 40px;
@@ -175,7 +173,7 @@ main {
     }
   }
 
-  .show-tagline {
+  .tagline {
     font-style: italic;
 
     @media (max-width: 768px) {
@@ -183,20 +181,20 @@ main {
     }
   }
 
-  .show-header-info {
+  .header-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
 
-    .show-genres {
-      display: flex;
+    .genres {
+      @include flex-center;
       flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 10px;
 
       .genre {
-        background: #007BFF;
+        background: #7B68EE;
         padding: 5px 10px;
         border-radius: 5px;
         color: #fff;
@@ -209,14 +207,13 @@ main {
       }
     }
 
-    .show-extra-details {
-      display: flex;
-      gap: 20px;
+    .extra-details {
+      @include flex-center;
+      gap: 10px;
       flex-wrap: wrap;
-      justify-content: center;
 
       span {
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(240, 128, 128, 0.7);
         padding: 5px 10px;
         border-radius: 5px;
         color: #fff;

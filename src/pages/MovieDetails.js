@@ -45,23 +45,23 @@ function MovieDetails() {
   const reviews = data.reviews.results.length > 0 ? data.reviews.results : null;
 
   return (
-    <div id="movie-details">
-      <header id="movie-header" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
+    <div className="details" id="movie-details">
+      <header className="details-header" id="movie-details-header" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
         { rating && 
           <div id="rating-badge">
             <FontAwesomeIcon icon={faStar} style={{color: "#FFD43B",}} /> {rating}
           </div> 
         }
-        <div id="movie-header-content">
+        <div className="header-content" id="movie-header-content">
           <h1>{data.title}</h1>
-          <p className="show-tagline">{data.tagline}</p>
-          <div className="show-header-info">
-            <div className="show-genres">
+          <p className="tagline">{data.tagline}</p>
+          <div className="header-info">
+            <div className="genres">
               {data.genres.map((genre) => (
                 <span key={genre.id} className="genre">{genre.name}</span>
               ))}
             </div>
-            <div className="show-extra-details">
+            <div className="extra-details" id="movie-extra-details">
               <span><strong>Release Date:</strong> {data.release_date}</span>
               { runtime && <span><strong>Runtime:</strong> {formatRuntime(data.runtime)} </span> }
             </div>
