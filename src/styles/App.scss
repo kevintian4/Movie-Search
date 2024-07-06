@@ -96,12 +96,19 @@ main {
 }
 
 .movie-details {
-  max-width: 900px;
-  margin: 20px auto;
+  max-width: 1000px;
+  margin: auto;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
+  padding: 10px;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    margin: 10px;
+    padding: 5px;
+  }
 }
 
 .movie-header {
@@ -127,16 +134,29 @@ main {
     position: relative;
     z-index: 2;
     padding: 40px;
-    @include border-radius;
+    border-radius: 8px;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      padding: 20px;
+    }
   }
 
   h1 {
     margin: 0;
     font-size: 2.5em;
+
+    @media (max-width: 768px) {
+      font-size: 1.8em;
+    }
   }
 
   .tagline {
     font-style: italic;
+
+    @media (max-width: 768px) {
+      font-size: 1em;
+    }
   }
 
   .movie-info {
@@ -157,6 +177,11 @@ main {
         border-radius: 5px;
         color: #fff;
         font-size: 0.9em;
+
+        @media (max-width: 768px) {
+          padding: 3px 8px;
+          font-size: 0.8em;
+        }
       }
     }
 
@@ -172,6 +197,11 @@ main {
         border-radius: 5px;
         color: #fff;
         font-size: 0.9em;
+
+        @media (max-width: 768px) {
+          padding: 3px 8px;
+          font-size: 0.8em;
+        }
       }
     }
   }
@@ -179,6 +209,10 @@ main {
 
 main {
   padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 }
 
 section {
@@ -188,6 +222,10 @@ section {
     margin-bottom: 10px;
     border-bottom: 2px solid #eee;
     padding-bottom: 5px;
+
+    @media (max-width: 768px) {
+      font-size: 1.2em;
+    }
   }
 }
 
@@ -195,6 +233,10 @@ section {
 .movie-reviews p {
   margin: 0;
   padding: 0;
+
+  @media (max-width: 768px) {
+    font-size: 0.9em;
+  }
 }
 
 .movie-reviews {
@@ -206,10 +248,18 @@ section {
 
     .author {
       font-weight: bold;
+
+      @media (max-width: 768px) {
+        font-size: 0.9em;
+      }
     }
 
     .content {
       margin: 0;
+
+      @media (max-width: 768px) {
+        font-size: 0.9em;
+      }
     }
   }
 }
@@ -218,11 +268,14 @@ section {
   margin-bottom: 20px;
 
   .movie-page-trailer {
+    @include border-radius;
     width: 100%;
     height: 450px;
     border: none;
-    border-radius: 8px;
-    margin-top: 10px;
+
+    @media (max-width: 768px) {
+      height: 250px;
+    }
   }
 }
 
@@ -231,4 +284,9 @@ section {
   font-size: 1.5em;
   color: #555;
   padding: 50px 0;
+
+  @media (max-width: 768px) {
+    font-size: 1.2em;
+    padding: 30px 0;
+  }
 }
