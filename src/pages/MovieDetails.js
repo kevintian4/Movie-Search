@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { getItemDetails } from '../services/api';
 import { useState, useEffect } from 'react';
+import { marked } from 'marked';
 
 function MovieDetails() {
   const { id } = useParams();
@@ -28,24 +29,25 @@ function MovieDetails() {
   }  
 
   const trailer = data.videos.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
-  const videoKey = trailer.key;
+  const videoKey = trailer ? trailer.key : null;
+
+  const reviews = data.reviews.results.length > 0 ? data.reviews.results : null;
+  console.log(reviews)
   return (
     <div className="movie-details">
       <header className="movie-header" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
-        <div className="movie-header-overlay">
-          <div className="movie-header-content">
-            <h1>{data.title}</h1>
-            <p className="tagline">{data.tagline}</p>
-            <div className="movie-info">
-              <div className="movie-genres">
-                {data.genres.map((genre) => (
-                  <span key={genre.id} className="genre">{genre.name}</span>
-                ))}
-              </div>
-              <div className="movie-details-extra">
-                <span><strong>Release Date:</strong> {data.release_date}</span>
-                <span><strong>Runtime:</strong> {formatRuntime(data.runtime)}</span>
-              </div>
+        <div className="movie-header-content">
+          <h1>{data.title}</h1>
+          <p className="tagline">{data.tagline}</p>
+          <div className="movie-info">
+            <div className="movie-genres">
+              {data.genres.map((genre) => (
+                <span key={genre.id} className="genre">{genre.name}</span>
+              ))}
+            </div>
+            <div className="movie-details-extra">
+              <span><strong>Release Date:</strong> {data.release_date}</span>
+              <span><strong>Runtime:</strong> {formatRuntime(data.runtime)} </span>
             </div>
           </div>
         </div>
@@ -68,20 +70,21 @@ function MovieDetails() {
             />
           </section>
         )}
-
-        <section className="movie-reviews">
-          <h2>Reviews</h2>
-          {data.reviews.results.length > 0 ? (
-            data.reviews.results.map((review) => (
+        
+        {reviews && (
+          <section className="movie-reviews">
+            <h2>Reviews</h2>
+            {reviews.map((review) => (
               <div key={review.id} className="review">
-                <p className="author">{review.author_details.username}:</p>
-                <p className="content">{review.content}</p>
+                <h3 className="author">{review.author}</h3>
+                  <div className="review-content" 
+                  dangerouslySetInnerHTML={{ __html: marked.parse(review.content.replace(/\n/g, '<br />')) }} 
+                />
               </div>
-            ))
-          ) : (
-            <p>No reviews available.</p>
-          )}
-        </section>
+            ))}
+          </section>
+        )}
+
       </main>
     </div>
   );
