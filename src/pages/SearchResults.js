@@ -9,9 +9,17 @@ function SearchResults() {
   const location = useLocation();
   const { results } = location.state || { results: [] };
 
-  const people = results.filter(item => item.media_type === 'person');
-  const movies = results.filter(item => item.media_type === 'movie');
-  const tvShows = results.filter(item => item.media_type === 'tv');
+  const people = results
+  .filter(item => item.media_type === 'person')
+  .sort((a, b) => b.popularity - a.popularity);
+
+  const movies = results
+    .filter(item => item.media_type === 'movie')
+    .sort((a, b) => b.popularity - a.popularity);
+
+  const tvShows = results
+    .filter(item => item.media_type === 'tv')
+    .sort((a, b) => b.popularity - a.popularity);
 
   return (
     <>
