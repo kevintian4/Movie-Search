@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const PeopleList = lazy(() => import('../components/PeopleList'));
 const MovieList = lazy(() => import('../components/MovieList'));
@@ -21,10 +21,18 @@ function SearchResults() {
     .filter(item => item.media_type === 'tv')
     .sort((a, b) => b.popularity - a.popularity);
 
+  const navigate = useNavigate();
+  const returnHome = () => {
+    navigate('/');
+  };
+
   return (
     <>
       {results.length === 0 ? (
-        <h1>No results found...</h1>
+        <>
+          <h1>No results found...</h1>
+          <button onClick={returnHome} id="return-home-button">Try another search</button>
+        </>
       ) : (
         <Suspense fallback={<div>Loading Components...</div>}>
           <MovieList items={movies} />
