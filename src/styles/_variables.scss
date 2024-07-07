@@ -27,6 +27,17 @@ $footer-height: 40px;
   border-radius: 10px;
 }
 
+@mixin item-header-tags{
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+
+  @media (max-width: 520px) {
+    padding: 3px 8px;
+    font-size: 0.8em;
+  }
+}
+
 @mixin lists {
   @include flex-center;
   flex-wrap: wrap;

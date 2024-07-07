@@ -29,7 +29,6 @@ function MovieDetails() {
       return `${hours}h ${minutes}m`;
     }
   }  
-  const runtime = formatRuntime(data.runtime);
 
   function formatRating(rating) { 
     if (rating === null || rating === undefined) {
@@ -37,12 +36,17 @@ function MovieDetails() {
     }
     return `${rating.toFixed(1)}/10`;
   }
-  const rating = formatRating(data.vote_average);
 
+  const genres = data.genres.length > 0 ? data.genres : null;
+  const runtime = data.runtime > 0 ? formatRuntime(data.runtime) : null;
+  const tagline = data.tagline !== "" ? data.tagline : null;
+  const rating = data.vote_count > 0 ? formatRating(data.vote_average) : null;
+  const releaseDate = data.release_date !== "" ? data.release_date : null;
   const trailer = data.videos.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
   const videoKey = trailer ? trailer.key : null;
-
   const reviews = data.reviews.results.length > 0 ? data.reviews.results : null;
+
+  console.log(data);
 
   return (
     <div className="details" id="movie-details">
@@ -54,16 +58,18 @@ function MovieDetails() {
         }
         <div className="header-content" id="movie-header-content">
           <h1>{data.title}</h1>
-          <p className="tagline">{data.tagline}</p>
+          { tagline &&<p className="tagline">{data.tagline}</p>}
           <div className="header-info">
-            <div className="genres">
-              {data.genres.map((genre) => (
-                <span key={genre.id} className="genre">{genre.name}</span>
-              ))}
-            </div>
-            <div className="extra-details" id="movie-extra-details">
-              <span><strong>Release Date:</strong> {data.release_date}</span>
-              { runtime && <span><strong>Runtime:</strong> {formatRuntime(data.runtime)} </span> }
+            {genres && (
+              <div className="genres item-tags">
+                {genres.map((genre) => (
+                  <span className="genre" key={genre.id}>{genre.name}</span>
+                ))}
+              </div>
+            )}
+            <div className="extra-details item-tags" id="movie-extra-details">
+              { releaseDate && <span><strong>Release Date:</strong> {releaseDate}</span> }
+              { runtime && <span><strong>Runtime:</strong> {runtime}</span> }
             </div>
           </div>
         </div>

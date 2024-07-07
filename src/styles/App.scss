@@ -63,8 +63,6 @@ main {
   }
 }
 
-
-
 .card {
   position: relative;
 
@@ -125,7 +123,7 @@ main {
   background-position: center;
   color: #fff;
   text-align: center;
-  padding: 130px 0;
+  padding: 150px 0;
 
   &::before {
     content: '';
@@ -145,8 +143,12 @@ main {
     border-radius: 8px;
     text-align: center;
 
-    @media (max-width: 768px) {
-      padding: 20px;
+    h1 {
+      font-size: 2.2em;
+  
+      @media (max-width: 520px) {
+        font-size: 1.6em;
+      }
     }
   }
 
@@ -163,19 +165,14 @@ main {
     font-size: 1em;
     font-weight: bold;
     z-index: 2;
-  }
 
-  h1 {
-    margin: 0;
-    font-size: 2.5em;
+    @media (max-width: 520px) {
+      font-size: 0.9em;
+    }
   }
 
   .tagline {
     font-style: italic;
-
-    @media (max-width: 768px) {
-      font-size: 1em;
-    }
   }
 
   .header-info {
@@ -184,7 +181,7 @@ main {
     align-items: center;
     margin-top: 10px;
 
-    .genres {
+    .item-tags {
       @include flex-center;
       flex-wrap: wrap;
       gap: 10px;
@@ -192,34 +189,12 @@ main {
 
       .genre {
         background: #7B68EE;
-        padding: 5px 10px;
-        border-radius: 5px;
-        color: #fff;
-        font-size: 0.9em;
-
-        @media (max-width: 768px) {
-          padding: 3px 8px;
-          font-size: 0.8em;
-        }
+        @include item-header-tags;
       }
-    }
-
-    .extra-details {
-      @include flex-center;
-      gap: 10px;
-      flex-wrap: wrap;
 
       span {
         background: rgba(240, 128, 128, 0.7);
-        padding: 5px 10px;
-        border-radius: 5px;
-        color: #fff;
-        font-size: 0.9em;
-
-        @media (max-width: 768px) {
-          padding: 3px 8px;
-          font-size: 0.8em;
-        }
+        @include item-header-tags;
       }
     }
   }
