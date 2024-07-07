@@ -5,7 +5,7 @@ function PeopleList({ items }) {
     <>
       {items.length > 0 && 
         <>  
-          <h2 className="list-header">People</h2> 
+          <h2 className="list-header" id="people-list-header">People</h2> 
           <hr />
         </>
       }

@@ -6,14 +6,17 @@
   min-height: 100vh;
 }
 
+
 header, footer{
   @include flex-center;
   height: 3rem;
 }
 
+
 footer {
   margin-top: 0.5rem;
 }
+
 
 header {
   position: relative;
@@ -29,42 +32,61 @@ header {
   }
 }
 
+
 main {
   flex: 1;
 }
+
 
 .home {
   @include flex-center;
   flex-direction: column;
 }
 
+
 .list-header {
   font-size: 2rem;
-  margin-top: 1.5rem 0 1rem;
+  margin-top: 5rem;
 }
+#movie-list-header {
+  margin-top: 0;
+}
+
 
 .item-list {
   @include lists;
-  margin-bottom: 4rem;
+  @include flex-center;
 }
-
-.search-bar {
-  outline: 0;
-  text-indent: 12px;
-  width: 19rem;
-  padding: 0.4rem 0;
-  border-radius: 12px;
-  border: 2px solid #ccc;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-
-  &:focus {
-    border-color: $primary-color;
-    box-shadow: 0 0 5px $primary-color;
-  }
-}
-
 .card {
   position: relative;
+
+  flex: 1 1 calc(50% - 10px);
+  max-width: calc(50% - 10px);
+
+  @media (min-width: 490px) {
+    flex: 1 1 calc(33.33% - 10px);
+    max-width: calc(33.33% - 10px)
+  }
+
+  @media (min-width: 705px) {
+    flex: 1 1 calc(25% - 10px);
+    max-width: calc(25% - 10px)
+  }
+  
+  @media (min-width: 950px) {
+    flex: 1 1 calc(20% - 10px);
+    max-width: calc(20% - 10px);
+  }
+  
+  @media (min-width: 1165px) {
+    flex: 1 1 calc(16.66% - 10px);
+    max-width: calc(16.66% - 10px);
+  }
+  
+  @media (min-width: 1390px) {
+    flex: 1 1 calc(14.28% - 10px);
+    max-width: calc(14.28% - 10px);
+  }
 
   .movie-title, .tv-name, .person-name {
     @include flex-center;
@@ -92,6 +114,23 @@ main {
   }
 }
 
+
+.search-bar {
+  outline: 0;
+  text-indent: 12px;
+  width: 19rem;
+  padding: 0.4rem 0;
+  border-radius: 12px;
+  border: 2px solid #ccc;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 5px $primary-color;
+  }
+}
+
+
 main {
   padding: 20px;
 
@@ -99,6 +138,37 @@ main {
     padding: 10px;
   }
 }
+
+
+.load-results-button-container {
+  @include flex-center;
+
+  .load-results-button {
+    display: inline-block;
+    border-radius: 10px;
+    margin: 20px 10px;
+    padding: 12px 24px;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 1rem;
+    border: 3px solid white;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: none;
+    transition: box-shadow ease 0.3s, transform ease 0.3s;
+  
+    &:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 15px rgb(149, 103, 255);
+    }
+
+    @media (max-width: 520px) {
+      font-size: 0.8rem;
+    }
+  }
+}
+
 
 .details {
   max-width: 1000px;
@@ -215,11 +285,13 @@ section {
   }
 }
 
+
 .overview {
   @media (max-width: 768px) {
     font-size: 0.9em;
   }
 }
+
 
 .review {
   border: 1px solid #ddd;
@@ -242,6 +314,7 @@ section {
   }
 }
 
+
 .trailer-section {
   margin-bottom: 20px;
 
@@ -256,6 +329,7 @@ section {
     }
   }
 }
+
 
 .loading {
   text-align: center;
