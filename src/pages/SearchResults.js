@@ -34,7 +34,7 @@ function SearchResults() {
           <button onClick={returnHome} id="return-home-button">Try another search</button>
         </>
       ) : (
-        <Suspense fallback={<div>Loading Components...</div>}>
+        <Suspense fallback={<div>Loading...</div>}>
           <MovieList items={movies} />
           <TVList items={tvShows} />
           <PeopleList items={people} />

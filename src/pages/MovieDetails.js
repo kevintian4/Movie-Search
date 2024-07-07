@@ -42,7 +42,10 @@ function MovieDetails() {
   const tagline = data.tagline !== "" ? data.tagline : null;
   const rating = data.vote_count > 0 ? formatRating(data.vote_average) : null;
   const releaseDate = data.release_date !== "" ? data.release_date : null;
-  const trailer = data.videos.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+
+  const officialTrailer = data.videos.results.find(video => video.name === 'Official Trailer' && video.site === 'YouTube');
+  const trailer = officialTrailer || data.videos.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+  
   const videoKey = trailer ? trailer.key : null;
   const reviews = data.reviews.results.length > 0 ? data.reviews.results : null;
 
