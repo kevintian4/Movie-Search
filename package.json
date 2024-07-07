@@ -2,7 +2,7 @@
   "name": "movie-search-new",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/kevintian4/test",
+  "homepage": "https://kevintian4.github.io/movie-search/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
