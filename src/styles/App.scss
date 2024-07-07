@@ -66,7 +66,7 @@ main {
 .card {
   position: relative;
 
-  .movie-title, .show-name, .person-name {
+  .movie-title, .tv-name, .person-name {
     @include flex-center;
     position: absolute;
     top: 50%;
@@ -85,7 +85,7 @@ main {
   }
 
   &:hover .movie-title,
-  &:hover .show-name,
+  &:hover .tv-name,
   &:hover .person-name {
     cursor: pointer;
     opacity: 1;
@@ -143,7 +143,7 @@ main {
     border-radius: 8px;
     text-align: center;
 
-    h1 {
+    .details-header-title {
       font-size: 2.2em;
   
       @media (max-width: 520px) {
@@ -242,10 +242,10 @@ section {
   }
 }
 
-.movie-trailer-section {
+.trailer-section {
   margin-bottom: 20px;
 
-  #movie-trailer {
+  .trailer {
     @include border-radius;
     width: 100%;
     height: 540px;

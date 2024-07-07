@@ -5,12 +5,12 @@ import { marked } from 'marked';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-function MovieDetails() {
+function TVDetails() {
   const { id } = useParams();
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    getItemDetails('movie', id)
+    getItemDetails('tv', id)
     .then((data) => {
         setData(data);
     });
@@ -20,12 +20,12 @@ function MovieDetails() {
     return <div>Loading...</div>;
   }
 
-  function formatRuntime(runtime) {
-    if (runtime < 60) {
-      return `${runtime}m`;
+  function formatRuntime(episodeDuration) {
+    if (episodeDuration < 60) {
+      return `${episodeDuration}m`;
     } else {
-      const hours = Math.floor(runtime / 60);
-      const minutes = runtime % 60;
+      const hours = Math.floor(episodeDuration / 60);
+      const minutes = episodeDuration % 60;
       return `${hours}h ${minutes}m`;
     }
   }  
@@ -37,11 +37,36 @@ function MovieDetails() {
     return `${rating.toFixed(1)}/10`;
   }
 
+  function formatStatus(status) {
+    if (status === "Planned") {
+      return "Coming Soon";
+    } else if (status === "Ended") {
+      return `Ended ${data.last_air_date}`;
+    }
+    else {
+      return status;
+    }
+  }
+
+  function formatSeasons(seasons) {
+    if(seasons === 1) {
+      return "1 season";
+    }
+    else if(seasons > 1) {
+      return `${seasons} seasons`;
+    }
+    else {
+      return seasons;
+    }
+  }
+
   const genres = data.genres.length > 0 ? data.genres : null;
-  const runtime = data.runtime > 0 ? formatRuntime(data.runtime) : null;
+  const episodeDuration = data.episode_run_time.length > 0 ? formatRuntime(data.episode_run_time[0]) : null;
+  const seasons = data.number_of_seasons > 0 ? formatSeasons(data.number_of_seasons) : null;
   const tagline = data.tagline !== "" ? data.tagline : null;
   const rating = data.vote_count > 0 ? formatRating(data.vote_average) : null;
-  const releaseDate = data.release_date !== "" ? data.release_date : null;
+  const first_air_date = data.first_air_date !== "" ? data.first_air_date : null;
+  const status = data.status !== "" ? formatStatus(data.status) : null;
   const trailer = data.videos.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
   const videoKey = trailer ? trailer.key : null;
   const reviews = data.reviews.results.length > 0 ? data.reviews.results : null;
@@ -49,15 +74,15 @@ function MovieDetails() {
   console.log(data);
 
   return (
-    <div className="details" id="movie-details">
-      <header className="details-header" id="movie-details-header" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
+    <div className="details" id="tv-details">
+      <header className="details-header" id="tv-details-header" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${data.backdrop_path})` }}>
         { rating && 
           <div id="rating-badge">
             <FontAwesomeIcon icon={faStar} style={{color: "#FFD43B",}} /> {rating}
           </div> 
         }
-        <div className="header-content" id="movie-header-content">
-          <h1 className="details-header-title">{data.title}</h1>
+        <div className="header-content" id="tv-header-content">
+          <h1 className="details-header-title">{data.name}</h1>
           { tagline &&<p className="tagline">{data.tagline}</p>}
           <div className="header-info">
             {genres && (
@@ -67,9 +92,11 @@ function MovieDetails() {
                 ))}
               </div>
             )}
-            <div className="extra-details item-tags" id="movie-extra-details">
-              { releaseDate && <span><strong>Release Date:</strong> {releaseDate}</span> }
-              { runtime && <span><strong>Runtime:</strong> {runtime}</span> }
+            <div className="extra-details item-tags" id="tv-extra-details">
+              { first_air_date && <span><strong>First Air Date:</strong> {first_air_date}</span> }
+              { status && <span><strong>Status:</strong> {status}</span> }
+              { seasons && <span><strong>{seasons}</strong></span>}
+              { episodeDuration && <span><strong>Episode Duration:</strong> {episodeDuration}</span> }
             </div>
           </div>
         </div>
@@ -82,14 +109,14 @@ function MovieDetails() {
         </section>
 
         {videoKey && (
-          <section className="trailer-section" id="movie-trailer-section">
+          <section className="trailer-section" id="tv-trailer-section">
             <h2>Trailer</h2>
             <iframe
               className="trailer"
-              id="movie-trailer"
+              id="tv-trailer"
               src={`https://www.youtube.com/embed/${videoKey}`}
               allowFullScreen
-              title="Movie Trailer"
+              title="TV Trailer"
             />
           </section>
         )}
@@ -113,4 +140,4 @@ function MovieDetails() {
   );
 }
 
-export default MovieDetails;
+export default TVDetails;

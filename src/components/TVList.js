@@ -13,8 +13,8 @@ function TVList({ items }) {
         {items.length === 0 ? (
           <></>
         ) : (
-          items.map((show) => (
-            <TVCard key={show.id} show={show} />
+          items.map((tv) => (
+            <TVCard key={tv.id} tv={tv} />
           ))
         )}
       </div>
