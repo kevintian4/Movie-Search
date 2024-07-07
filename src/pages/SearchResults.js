@@ -31,7 +31,7 @@ function SearchResults() {
       {results.length === 0 ? (
         <>
           <h1>No results found...</h1>
-          <button onClick={returnHome} id="return-home-button">Try another search</button>
+          <button onClick={returnHome} className="button" id="return-home-button">Try another search</button>
         </>
       ) : (
         <Suspense fallback={<div>Loading...</div>}>

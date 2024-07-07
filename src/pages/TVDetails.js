@@ -67,8 +67,11 @@ function TVDetails() {
   const rating = data.vote_count > 0 ? formatRating(data.vote_average) : null;
   const first_air_date = data.first_air_date !== "" ? data.first_air_date : null;
   const status = data.status !== "" ? formatStatus(data.status) : null;
-  const trailer = data.videos.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
-  const videoKey = trailer ? trailer.key : null;
+
+  const officialTrailer = data.videos.results.find(video => video.name === 'Official Trailer' && video.site === 'YouTube');
+  const trailer = officialTrailer || data.videos.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+
+  const trailerKey = trailer ? trailer.key : null;
   const reviews = data.reviews.results.length > 0 ? data.reviews.results : null;
 
   console.log(data);
@@ -108,13 +111,13 @@ function TVDetails() {
           <p className="overview">{data.overview}</p>
         </section>
 
-        {videoKey && (
+        {trailerKey && (
           <section className="trailer-section" id="tv-trailer-section">
             <h2>Trailer</h2>
             <iframe
               className="trailer"
               id="tv-trailer"
-              src={`https://www.youtube.com/embed/${videoKey}`}
+              src={`https://www.youtube.com/embed/${trailerKey}`}
               allowFullScreen
               title="TV Trailer"
             />

@@ -45,8 +45,8 @@ function MovieDetails() {
 
   const officialTrailer = data.videos.results.find(video => video.name === 'Official Trailer' && video.site === 'YouTube');
   const trailer = officialTrailer || data.videos.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
-  
-  const videoKey = trailer ? trailer.key : null;
+
+  const trailerKey = trailer ? trailer.key : null;
   const reviews = data.reviews.results.length > 0 ? data.reviews.results : null;
 
   console.log(data);
@@ -84,13 +84,13 @@ function MovieDetails() {
           <p className="overview">{data.overview}</p>
         </section>
 
-        {videoKey && (
+        {trailerKey && (
           <section className="trailer-section" id="movie-trailer-section">
             <h2>Trailer</h2>
             <iframe
               className="trailer"
               id="movie-trailer"
-              src={`https://www.youtube.com/embed/${videoKey}`}
+              src={`https://www.youtube.com/embed/${trailerKey}`}
               allowFullScreen
               title="Movie Trailer"
             />
