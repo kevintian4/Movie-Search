@@ -21,11 +21,11 @@ function SearchBar({ onSearch }) {
 
   return (
     <form onSubmit={handleSubmit} id="search-form">
-      <input className='search-bar'
+      <input id='search-bar'
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search for movies..."
+        placeholder="Search"
       />
     </form>
   );

@@ -16,7 +16,7 @@ export function MovieCard({ movie }) {
   return (
     <div className="card" id="movie-card" onClick={DisplayDetails}>
       <img src={posterUrl} alt={movie.title}/>
-      <div className="movie-title">{movie.title} {releaseYearDisplay}</div>
+      <div className="show-card-name card-name" id="movie-card-name">{movie.title} {releaseYearDisplay}</div>
     </div>
   );
 }

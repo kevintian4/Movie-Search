@@ -16,7 +16,7 @@ export function TVCard({ tv }) {
   return (
     <div className="card" id="tv-card" onClick={DisplayDetails}>
       <img src={posterUrl} alt={tv.name} />
-      <div className="tv-name">{tv.name} {firstAirYearDisplay}</div>
+      <div className="show-card-name card-name" id="tv-card-name">{tv.name} {firstAirYearDisplay}</div>
     </div>
   );
 }

@@ -12,8 +12,8 @@ export function PersonCard({ person }) {
 
   return (
     <div className="card" id="person-card" onClick={DisplayDetails}>
+      <div className="card-name" id="person-card-name">{person.name}</div>
       <img src={photoUrl} alt={person.name}/>
-      <div className="person-name">{person.name}</div>
     </div>
   );
 }

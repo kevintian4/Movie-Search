@@ -32,15 +32,51 @@ header {
   }
 }
 
-
-main {
-  flex: 1;
-}
-
-
 .home {
   @include flex-center;
   flex-direction: column;
+
+  #home-title {
+    @include no-margin-padding;
+    font-size: 2.2rem;
+    margin-top: 0.5rem;
+  }
+
+  #home-subtitle {
+    @include no-margin-padding;
+    font-size: 1.1rem;
+    margin-top: 0.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  #search-bar {
+    outline: 0;
+    text-indent: 12px;
+    width: 18rem;
+    padding: 0.4rem 0;
+    border-radius: 12px;
+    border: 2px solid #ccc;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 5px $primary-color;
+    }
+  }
+
+  @media (max-width: 520px) {
+    #home-title {
+      font-size: 1.9rem;
+    }
+
+    #home-subtitle {
+      font-size: 1rem;
+    }
+
+    #search-bar {
+      width: 15rem;
+    }
+  }
 }
 
 
@@ -57,81 +93,62 @@ main {
   @include lists;
   @include flex-center;
 }
+
 .card {
-  position: relative;
-
-  flex: 1 1 calc(50% - 10px);
-  max-width: calc(50% - 10px);
-
-  @media (min-width: 490px) {
-    flex: 1 1 calc(33.33% - 10px);
-    max-width: calc(33.33% - 10px)
+  &:hover {
+    cursor: pointer;
   }
 
-  @media (min-width: 705px) {
-    flex: 1 1 calc(25% - 10px);
-    max-width: calc(25% - 10px)
-  }
-  
-  @media (min-width: 950px) {
-    flex: 1 1 calc(20% - 10px);
-    max-width: calc(20% - 10px);
-  }
-  
-  @media (min-width: 1165px) {
-    flex: 1 1 calc(16.66% - 10px);
-    max-width: calc(16.66% - 10px);
-  }
-  
-  @media (min-width: 1390px) {
-    flex: 1 1 calc(14.28% - 10px);
-    max-width: calc(14.28% - 10px);
-  }
-
-  .movie-title, .tv-name, .person-name {
+  .card-name {
     @include flex-center;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    background:rgba(0, 0, 0, 0.6);
     font-size: 0.8rem;
     font-weight: bold;
-    border-radius: 10px; 
+    width: 100%;
     box-sizing: border-box;
   }
 
-  &:hover .movie-title,
-  &:hover .tv-name,
-  &:hover .person-name {
-    cursor: pointer;
+  #person-card-name {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    bottom: 0;
+    padding: 0.5rem 0;
+    z-index: 1;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .show-card-name {
+    @include border-radius;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &:hover .show-card-name {
     opacity: 1;
   }
 }
 
+#person-card {
+  @include border-radius;
+  box-shadow: none;
+  transition: box-shadow ease-in-out 0.3s;
 
-.search-bar {
-  outline: 0;
-  text-indent: 12px;
-  width: 19rem;
-  padding: 0.4rem 0;
-  border-radius: 12px;
-  border: 2px solid #ccc;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-
-  &:focus {
-    border-color: $primary-color;
-    box-shadow: 0 0 5px $primary-color;
+  &:hover {
+    box-shadow: 0 0 15px rgba(149, 103, 255);
   }
 }
 
 
 main {
+  flex: 1;
   padding: 20px;
 
   @media (max-width: 768px) {
@@ -262,7 +279,7 @@ main {
     .item-tags {
       @include flex-center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 5px;
       margin-bottom: 10px;
 
       .genre {
@@ -350,6 +367,7 @@ section {
     padding: 30px 0;
   }
 }
+
 
 #return-home-button {
   margin: 4rem auto;
