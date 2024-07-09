@@ -12,15 +12,14 @@ header, footer{
   height: 3rem;
 }
 
-
 footer {
   margin-top: 0.5rem;
 }
 
-
 header {
   position: relative;
   background-color: lighten($background-color, 5%);
+  margin-bottom: 0.5rem;
 
   .header-button {
     outline: 0;
@@ -99,6 +98,9 @@ header {
     cursor: pointer;
   }
 
+  border: 1px solid #ddd;
+  @include border-radius;
+
   .card-name {
     @include flex-center;
     position: absolute;
@@ -148,12 +150,8 @@ header {
 
 
 main {
-  flex: 1;
   padding: 20px;
-
-  @media (max-width: 768px) {
-    padding: 10px;
-  }
+  flex: 1;
 }
 
 
@@ -193,13 +191,67 @@ main {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   overflow: hidden;
-  padding: 10px;
+  padding: 1.2rem;
   background-color: lighten($background-color, 5%);
 
   @media (max-width: 768px) {
     max-width: 100%;
-    margin: 10px;
-    padding: 5px;
+    padding: 1rem;
+  }
+
+  #person-name {
+    margin-bottom: 10px;
+    width: 100%;  
+    font-size: 40px;
+  }
+
+  #person-details-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    #person-name-and-image {
+      display: flex;
+      flex-direction: column;
+      margin: 0 10px;
+
+      img {
+        @include border-radius;
+        width: 230px;
+        height: 360px;
+      }
+    }
+
+    #person-general-details {
+      display: flex;
+      flex-direction: column;
+      margin: 0 10px;
+
+      p {
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      a {
+        @include border-radius;
+        text-align: center;
+        width: 150px;
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 10px;
+        border: 2px solid #007BFF;
+        background-color: transparent;
+        color: #007BFF;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      
+        &:hover {
+          background-color: #007BFF;
+          color: $font-color;
+        }
+      }
+    }
   }
 }
 
@@ -213,7 +265,7 @@ main {
 }
 
 .details-header{
-  position: relative;
+  @include border-radius;
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -221,6 +273,7 @@ main {
   padding: 150px 0;
 
   &::before {
+    @include border-radius;
     content: '';
     position: absolute;
     top: 0;
@@ -323,6 +376,10 @@ section {
   padding: 2rem;
   margin: 1rem 0;
   background-color: lighten($background-color, 5%);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   .author {
     font-weight: bold;  

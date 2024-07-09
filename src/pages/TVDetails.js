@@ -60,19 +60,38 @@ function TVDetails() {
     }
   }
 
-  const genres = data.genres.length > 0 ? data.genres : null;
+  function formatStatus(status){
+    if (status === "Planned") {
+      return "Coming Soon";
+    } else if (status === "Ended" && data.last_air_date !== null) {
+      return `Ended ${formatDate(data.last_air_date)}`;
+    }
+    else { 
+      return status;
+    }
+  }
+
+  // I don't want day of the week in the date
+  function formatDate(date) {
+    const formattedDate = new Date(date);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return formattedDate.toLocaleDateString(undefined, options);
+  }
+
   const episodeDuration = data.episode_run_time.length > 0 ? formatRuntime(data.episode_run_time[0]) : null;
-  const seasons = data.number_of_seasons > 0 ? formatSeasons(data.number_of_seasons) : null;
-  const tagline = data.tagline !== "" ? data.tagline : null;
-  const rating = data.vote_count > 0 ? formatRating(data.vote_average) : null;
-  const first_air_date = data.first_air_date !== "" ? data.first_air_date : null;
-  const status = data.status !== "" ? formatStatus(data.status) : null;
+  const first_air_date = data.first_air_date ? formatDate(data.first_air_date) : null;
+  const genres = data.genres.length > 0 ? data.genres : null;
+  const overview = data.overview !== "" ? data.overview : null;
 
   const officialTrailer = data.videos.results.find(video => video.name === 'Official Trailer' && video.site === 'YouTube');
   const trailer = officialTrailer || data.videos.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
-
   const trailerKey = trailer ? trailer.key : null;
+
+  const rating = data.vote_count > 0 ? formatRating(data.vote_average) : null;
   const reviews = data.reviews.results.length > 0 ? data.reviews.results : null;
+  const seasons = data.number_of_seasons > 0 ? formatSeasons(data.number_of_seasons) : null;
+  const status = data.status !== "" ? formatStatus(data.status) : null;
+  const tagline = data.tagline !== "" ? data.tagline : null;
 
   console.log(data);
 
@@ -97,7 +116,7 @@ function TVDetails() {
             )}
             <div className="extra-details item-tags" id="tv-extra-details">
               { first_air_date && <span><strong>First Air Date:</strong> {first_air_date}</span> }
-              { status && <span><strong>Status:</strong> {status}</span> }
+              { status && <span><strong>Status:</strong> {status} </span> }
               { seasons && <span><strong>{seasons}</strong></span>}
               { episodeDuration && <span><strong>Episode Duration:</strong> {episodeDuration}</span> }
             </div>
@@ -105,12 +124,14 @@ function TVDetails() {
         </div>
       </header>
 
-      <main>
-        <section className="overview-section">
-          <h2>Overview</h2>
-          <p className="overview">{data.overview}</p>
-        </section>
-
+      <div>
+        {overview && (
+          <section className="overview-section">
+            <h2>Overview</h2>
+            <p className="overview">{data.overview}</p>
+          </section>
+        )}
+        
         {trailerKey && (
           <section className="trailer-section" id="tv-trailer-section">
             <h2>Trailer</h2>
@@ -138,7 +159,7 @@ function TVDetails() {
           </section>
         )}
 
-      </main>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 // Variables
 $primary-color: #4193c9;
 $secondary-color: #822ecc;
-$font-color: #F5F5DC;
+$font-color: #e6e6e6;
 $background-color: #1A1A1A;
 $header-height: 60px;
 $footer-height: 40px;
@@ -20,7 +20,7 @@ $footer-height: 40px;
 }
 
 @mixin box-shadow {
-  box-shadow: 0 0px 15px black;
+  box-shadow: 0 0px 10px $secondary-color;
 }
 
 @mixin border-radius {

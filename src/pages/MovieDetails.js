@@ -37,11 +37,17 @@ function MovieDetails() {
     return `${rating.toFixed(1)}/10`;
   }
 
+  function formatDate(date) {
+    const formattedDate = new Date(date);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return formattedDate.toLocaleDateString(undefined, options);
+  }
+
   const genres = data.genres.length > 0 ? data.genres : null;
   const runtime = data.runtime > 0 ? formatRuntime(data.runtime) : null;
   const tagline = data.tagline !== "" ? data.tagline : null;
   const rating = data.vote_count > 0 ? formatRating(data.vote_average) : null;
-  const releaseDate = data.release_date !== "" ? data.release_date : null;
+  const releaseDate = data.release_date !== "" ? formatDate(data.release_date) : null;
 
   const officialTrailer = data.videos.results.find(video => video.name === 'Official Trailer' && video.site === 'YouTube');
   const trailer = officialTrailer || data.videos.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
@@ -78,7 +84,7 @@ function MovieDetails() {
         </div>
       </header>
 
-      <main>
+      <div>
         <section className="overview-section">
           <h2>Overview</h2>
           <p className="overview">{data.overview}</p>
@@ -111,7 +117,7 @@ function MovieDetails() {
           </section>
         )}
 
-      </main>
+      </div>
     </div>
   );
 }

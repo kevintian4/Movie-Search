@@ -8,7 +8,7 @@ export async function getItemDetails(endpoint, id) {
   } else if (endpoint === 'tv') {
     url = `https://api.themoviedb.org/3/tv/${id}?append_to_response=images%2Cvideos%2Creviews%2Crecommendations%2Ccredits&language=en-US`;  
   } else if (endpoint === 'person') {
-    url = `https://api.themoviedb.org/3/person/${id}?append_to_response=combined_credits&language=en-US`;
+    url = `https://api.themoviedb.org/3/person/${id}?append_to_response=combined_credits%2Cimages&language=en-US`;
   } else {
     throw new Error('Invalid endpoint specified');
   }
