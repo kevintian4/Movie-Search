@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { MovieCard } from "./MovieCard";
 
 function MovieList({ items }) {
-  const [displayedItems, setDisplayedItems] = useState(items.slice(0, 14));
-  const [nextIndex, setNextIndex] = useState(14);
+  const [displayedItems, setDisplayedItems] = useState(items.slice(0, 12));
+  const [nextIndex, setNextIndex] = useState(12);
 
   const loadMoreItems = () => {
-    const newNextIndex = nextIndex + 14;
+    const newNextIndex = nextIndex + 12;
     setDisplayedItems(items.slice(0, newNextIndex));
     setNextIndex(newNextIndex);
   };

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TVCard } from "./TVCard";
 
 function TVList({ items }) {
-  const [displayedItems, setDisplayedItems] = useState(items.slice(0, 14));
+  const [displayedItems, setDisplayedItems] = useState(items.slice(0, 12));
   const [nextIndex, setNextIndex] = useState(14);
 
   const loadMoreItems = () => {
