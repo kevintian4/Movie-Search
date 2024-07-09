@@ -3,10 +3,10 @@ import { TVCard } from "./TVCard";
 
 function TVList({ items }) {
   const [displayedItems, setDisplayedItems] = useState(items.slice(0, 12));
-  const [nextIndex, setNextIndex] = useState(14);
+  const [nextIndex, setNextIndex] = useState(12);
 
   const loadMoreItems = () => {
-    const newNextIndex = nextIndex + 14;
+    const newNextIndex = nextIndex + 12;
     setDisplayedItems(items.slice(0, newNextIndex));
     setNextIndex(newNextIndex);
   };
@@ -17,7 +17,7 @@ function TVList({ items }) {
   }
 
   return (
-    <>
+    <div className="list-container">
       {items.length > 0 && 
         <>  
           <h2 className="list-header" id="tv-list-header">TV</h2> 
@@ -45,7 +45,7 @@ function TVList({ items }) {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }
 

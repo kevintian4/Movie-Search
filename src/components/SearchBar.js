@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { searchMulti } from '../services/api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function SearchBar({ onSearch }) {
   const [query, setQuery] = useState('');
@@ -27,6 +29,9 @@ function SearchBar({ onSearch }) {
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search"
       />
+      <button type="submit" id="search-submit-icon">
+        <FontAwesomeIcon icon={faSearch} />
+      </button>
     </form>
   );
 }

@@ -71,7 +71,7 @@ function PersonDetails() {
           { alsoKnownAs && (
             <p>Also known as: {alsoKnownAs.slice(0, 3).join(", ")}{alsoKnownAs.length > 3 && "..."}</p>
           )}
-          { homepage && <a href={homepage} target="_blank" rel="noreferrer">Official Website</a>}
+          { homepage && <a href={homepage} target="_blank" rel="noreferrer" id="person-website-link">Official Website</a>}
         </div>
       </div>
       <div>

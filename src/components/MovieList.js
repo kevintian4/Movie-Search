@@ -16,8 +16,8 @@ function MovieList({ items }) {
     setNextIndex(items.length)
   }
 
-  return (
-    <>
+  return (  
+    <div className='list-container'>
       {items.length > 0 && 
         <>  
           <h2 className="list-header" id="movie-list-header">Movies</h2> 
@@ -45,7 +45,7 @@ function MovieList({ items }) {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }
 

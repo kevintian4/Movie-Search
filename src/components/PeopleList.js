@@ -17,7 +17,7 @@ function PeopleList({ items }) {
   }
 
   return (
-    <>
+    <div className='list-container'>
       {items.length > 0 && 
         <>  
           <h2 className="list-header" id="people-list-header">People</h2> 
@@ -45,7 +45,7 @@ function PeopleList({ items }) {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }
 

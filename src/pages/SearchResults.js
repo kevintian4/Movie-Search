@@ -35,9 +35,9 @@ function SearchResults() {
         </>
       ) : (
         <Suspense fallback={<div>Loading...</div>}>
-          <MovieList items={movies} />
-          <TVList items={tvShows} />
-          <PeopleList items={people} />
+          { movies.length > 0 && <MovieList items={movies} /> }
+          { tvShows.length > 0 && <TVList items={tvShows} /> }
+          { people.length > 0 && <PeopleList items={people} /> }
         </Suspense>
       )}
     </>
