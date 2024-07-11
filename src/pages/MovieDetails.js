@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { marked } from 'marked';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import MovieTrailer from '../components/MovieTrailer';
 
 function MovieDetails() {
   const { id } = useParams();
@@ -90,18 +91,7 @@ function MovieDetails() {
           <p className="overview">{data.overview}</p>
         </section>
 
-        {trailerKey && (
-          <section className="trailer-section" id="movie-trailer-section">
-            <h2>Trailer</h2>
-            <iframe
-              className="trailer"
-              id="movie-trailer"
-              src={`https://www.youtube.com/embed/${trailerKey}`}
-              allowFullScreen
-              title="Movie Trailer"
-            />
-          </section>
-        )}
+        {trailerKey && <MovieTrailer trailerKey={trailerKey} />}
         
         {reviews && (
           <section className="reviews-section">

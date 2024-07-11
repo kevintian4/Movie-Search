@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { marked } from 'marked';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import TVTrailer from '../components/TVTrailer';
 
 function TVDetails() {
   const { id } = useParams();
@@ -37,17 +38,6 @@ function TVDetails() {
     return `${rating.toFixed(1)}/10`;
   }
 
-  function formatStatus(status) {
-    if (status === "Planned") {
-      return "Coming Soon";
-    } else if (status === "Ended") {
-      return `Ended ${data.last_air_date}`;
-    }
-    else {
-      return status;
-    }
-  }
-
   function formatSeasons(seasons) {
     if(seasons === 1) {
       return "1 season";
@@ -71,7 +61,6 @@ function TVDetails() {
     }
   }
 
-  // I don't want day of the week in the date
   function formatDate(date) {
     const formattedDate = new Date(date);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -132,18 +121,7 @@ function TVDetails() {
           </section>
         )}
         
-        {trailerKey && (
-          <section className="trailer-section" id="tv-trailer-section">
-            <h2>Trailer</h2>
-            <iframe
-              className="trailer"
-              id="tv-trailer"
-              src={`https://www.youtube.com/embed/${trailerKey}`}
-              allowFullScreen
-              title="TV Trailer"
-            />
-          </section>
-        )}
+        {trailerKey && <TVTrailer trailerKey={trailerKey} />}
         
         {reviews && (
           <section className="reviews-section">

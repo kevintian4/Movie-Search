@@ -403,12 +403,24 @@ section {
     }
   }
 
-  .review-content { 
+  .review-content {
+    white-space: pre-wrap; /* Preserve line breaks */
     overflow: hidden;
-    @media (max-width: 768px) {
-      font-size: 0.9em;
-    }
+    // display: -webkit-box;
+    // -webkit-line-clamp: 2; /* Number of lines to show */
+    // -webkit-box-orient: vertical;
   }
+  
+  // .show-more-button {
+  //   color: blue;
+  //   cursor: pointer;
+  //   display: inline-block;
+  //   margin-top: 10px;
+  // }
+  
+  // .review-content.expanded {
+  //   -webkit-line-clamp: unset;
+  // }
 }
 
 
