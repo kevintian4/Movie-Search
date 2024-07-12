@@ -34,6 +34,18 @@ function PersonDetails() {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return formattedDate.toLocaleDateString(undefined, options);
   }
+
+  function formatKnownFor(knownFor) {
+    if (knownFor === "Acting") {
+      return "Actor";
+    } else if (knownFor === "Directing") {
+      return "Director";
+    } else if (knownFor === "Writing") {
+      return "Writer";
+    } else {
+      return knownFor;
+    }
+  }
   
   console.log(data);
 
@@ -46,7 +58,7 @@ function PersonDetails() {
   const photo = data.profile_path ? data.profile_path : null;
   const homepage = data.homepage ? data.homepage : null;
   const images = data.images.profiles.length > 0 ? data.images.profiles : null;
-  const knownFor = data.known_for_department ? data.known_for_department : null;
+  const knownFor = data.known_for_department ? formatKnownFor(data.known_for_department) : null;
   const placeOfBirth = data.place_of_birth ? data.place_of_birth : null; 
 
   return (
@@ -63,15 +75,18 @@ function PersonDetails() {
           }
         </div>
         <div id="person-general-details">
+          <div id="person-title-gender-container">
+            { knownFor && <p id="known-for-title">{knownFor}</p> }
+            { knownFor && gender && <p id="person-title-gender-separator">|</p>}
+            { gender && <p id="person-gender">{gender}</p> }
+          </div>
           { birthday && <p>Born: {birthday}</p>}
           { deathday && <p>Died: {deathday}</p>}
           { placeOfBirth && <p>Place of birth: {data.place_of_birth}</p>}
-          { gender && <p>{gender}</p>}
-          { knownFor && <p>Known for: {data.known_for_department}</p>}
           { alsoKnownAs && (
             <p>Also known as: {alsoKnownAs.slice(0, 3).join(", ")}{alsoKnownAs.length > 3 && "..."}</p>
           )}
-          { homepage && <a href={homepage} target="_blank" rel="noreferrer" id="person-website-link`">Official Website</a>}
+          { homepage && <a href={homepage} target="_blank" rel="noreferrer" id="person-website-link">Official Website</a>}
         </div>
       </div>
       <div>

@@ -44,11 +44,24 @@ function MovieDetails() {
     return formattedDate.toLocaleDateString(undefined, options);
   }
 
+  function formatStatus(status){
+    if (status === "Planned") {
+      return "Coming Soon";
+    } else if (status === "Ended" && data.last_air_date !== null) {
+      return `Ended ${formatDate(data.last_air_date)}`;
+    } else if (status === "Released") {
+      return null;
+    } else { 
+      return status;
+    }
+  }
+
   const genres = data.genres.length > 0 ? data.genres : null;
   const runtime = data.runtime > 0 ? formatRuntime(data.runtime) : null;
   const tagline = data.tagline !== "" ? data.tagline : null;
   const rating = data.vote_count > 0 ? formatRating(data.vote_average) : null;
   const releaseDate = data.release_date !== "" ? formatDate(data.release_date) : null;
+  const status = data.status !== "" ? formatStatus(data.status) : null;
 
   const officialTrailer = data.videos.results.find(video => video.name === 'Official Trailer' && video.site === 'YouTube');
   const trailer = officialTrailer || data.videos.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
@@ -79,6 +92,7 @@ function MovieDetails() {
             )}
             <div className="extra-details item-tags" id="movie-extra-details">
               { releaseDate && <span><strong>Release Date:</strong> {releaseDate}</span> }
+              { status && <span><strong>Status:</strong> {status} </span> }
               { runtime && <span><strong>Runtime:</strong> {runtime}</span> }
             </div>
           </div>
@@ -100,7 +114,7 @@ function MovieDetails() {
               <div key={review.id} className="review">
                 <h4 className="author">{review.author}</h4>
                 <div className="review-content" 
-                  dangerouslySetInnerHTML={{ __html: marked.parse(review.content.replace(/\n/g, '<br />')) }} 
+                  dangerouslySetInnerHTML={{ __html: marked.parse(review.content) }} 
                 />
               </div>
             ))}
