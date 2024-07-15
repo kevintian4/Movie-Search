@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { getItemDetails } from '../services/api';
 import { useState, useEffect } from 'react';
+import ShowsCarousel from '../components/ShowsCarousel';
 
 function PersonDetails() {
   const { id } = useParams();
@@ -42,8 +43,10 @@ function PersonDetails() {
       return "Director";
     } else if (knownFor === "Writing") {
       return "Writer";
+    } else if (knownFor === "Production") {
+      return "Producer";
     } else {
-      return knownFor;
+      return `Known for ${knownFor}`;
     }
   }
   
@@ -52,8 +55,11 @@ function PersonDetails() {
   const alsoKnownAs = data.also_known_as.length > 0 ? data.also_known_as : null;
   const biography = data.biography !== "" ? data.biography : null;
   const birthday = data.birthday ? formatDate(data.birthday) : null;
-  const combinedCredits = data.combined_credits > 0 ? data.combined_credits : null;
-  const deathday = data.deathday ? data.deathday : null;
+
+  const combinedCredits = (data.combined_credits.cast.length > 0 || 
+  data.combined_credits.crew.length > 0) ? data.combined_credits : null;
+
+  const deathday = data.deathday ? formatDate(data.deathday) : null;
   const gender = data.gender ? formatGender(data.gender) : null;
   const photo = data.profile_path ? data.profile_path : null;
   const homepage = data.homepage ? data.homepage : null;
@@ -90,6 +96,7 @@ function PersonDetails() {
         </div>
       </div>
       <div>
+        { combinedCredits && <ShowsCarousel credits_data={combinedCredits} />}
         { biography && (
           <section className="overview-section">
             <h2>Biography</h2>

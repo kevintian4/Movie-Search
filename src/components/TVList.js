@@ -17,14 +17,14 @@ function TVList({ items }) {
   }
 
   return (
-    <div className="list-container">
+    <div className="search-results-list-container">
       {items.length > 0 && 
         <>  
-          <h2 className="list-header" id="tv-list-header">TV</h2> 
+          <h2 className="search-results-list-header" id="search-results-tv-list-header">TV</h2> 
           <hr />
         </>
       }
-      <div className="item-list" id="tv-list">
+      <div className="search-results-item-list" id="search-results-tv-list">
         {displayedItems.length === 0 ? (
           <></>
         ) : (
