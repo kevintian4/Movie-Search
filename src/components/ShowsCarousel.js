@@ -7,9 +7,10 @@ function ShowsCarousel({ credits_data }) {
   .sort((a, b) => b.popularity - a.popularity);
 
   return (
-    <div className="shows-carousel">
-      <TVCard tv={cast_credits[0]}/>
-    </div>
+    // <div className="shows-carousel">
+    //   <TVCard tv={cast_credits[0]}/>
+    // </div>
+    <></>
   );
 }
 
