@@ -402,6 +402,7 @@ main {
   color: #fff;
   text-align: center;
   padding: 150px 0;
+  margin-bottom: 0;
 
   &::before {
     @include border-radius;

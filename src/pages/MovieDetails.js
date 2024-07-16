@@ -99,29 +99,32 @@ function MovieDetails() {
         </div>
       </header>
 
-      <div>
-        <section className="overview-section">
-          <h2>Overview</h2>
-          <p className="overview">{data.overview}</p>
-        </section>
+      {(data.overview !== "" || trailerKey || (reviews && reviews.length > 0)) && (
+        <div>
+          {data.overview !== "" && 
+            <section className="overview-section">
+              <h2>Overview</h2>
+              <p className="overview">{data.overview}</p>
+            </section>
+          }
 
-        {trailerKey && <MovieTrailer trailerKey={trailerKey} />}
-        
-        {reviews && (
-          <section className="reviews-section">
-            <h2>Reviews</h2>
-            {reviews.map((review) => (
-              <div key={review.id} className="review">
-                <h4 className="author">{review.author}</h4>
-                <div className="review-content" 
-                  dangerouslySetInnerHTML={{ __html: marked.parse(review.content) }} 
-                />
-              </div>
-            ))}
-          </section>
-        )}
-
-      </div>
+          {trailerKey && <MovieTrailer trailerKey={trailerKey} />}
+          
+          {reviews && reviews.length > 0 && (
+            <section className="reviews-section">
+              <h2>Reviews</h2>
+              {reviews.map((review) => (
+                <div key={review.id} className="review">
+                  <h4 className="author">{review.author}</h4>
+                  <div className="review-content" 
+                    dangerouslySetInnerHTML={{ __html: marked.parse(review.content) }} 
+                  />
+                </div>
+              ))}
+            </section>
+          )}
+        </div>
+      )}
     </div>
   );
 }
