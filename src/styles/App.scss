@@ -125,14 +125,29 @@ header {
 }
 
 .shows-carousel {
-  @include flex-center;
-  gap: 10px;
-  margin-top: 20px;
-  overflow-x: scroll;
+  margin: 20px 0;
 
-  .card {
-    width: 500px;
-  }
+  .shows-carousel-list {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    overflow-x: auto; 
+  
+    .card {
+      width: 180px; 
+      flex-shrink: 0; /* Prevent cards from shrinking */
+      margin-right: 10px; 
+  
+      @media (max-width: 768px) {
+        width: 140px;
+      }
+  
+      &:last-child {
+        margin-right: 0; /* Remove margin from the last card */
+      }
+    }
+  }  
 }
 
 .search-results-list-container {
@@ -157,7 +172,7 @@ header {
         max-width: calc(33.33% - 10px)
       }
     
-      @media (min-width: 705px) {
+      @media (min-width: 768px) {
         flex: 1 1 calc(25% - 10px);
         max-width: calc(25% - 10px)
       }
@@ -299,7 +314,7 @@ main {
   padding: 1.2rem;
   background-color: lighten($background-color, 5%);
 
-  @media (max-width: 788px) {
+  @media (max-width: 768px) {
     max-width: 100%;
 
     #person-website-link {
