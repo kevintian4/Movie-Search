@@ -13,6 +13,9 @@ function ShowsCarousel({ credits_data, knownFor }) {
   if (knownFor == "Acting") {
     cast_credits = cast_credits.filter(item =>
       !item.character.startsWith("Self") &&
+      !item.character.startsWith("Himself") &&
+      !item.character.startsWith("Herself") &&
+      !item.character.includes("Guest") &&
       !item.character.includes("archive") &&
       !item.character.includes("(voice)") &&
       item.character !== ""
