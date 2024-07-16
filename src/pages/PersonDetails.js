@@ -96,7 +96,7 @@ function PersonDetails() {
         </div>
       </div>
       <div>
-        { combinedCredits && <ShowsCarousel credits_data={combinedCredits} />}
+        { combinedCredits && <ShowsCarousel credits_data={combinedCredits} knownFor={data.known_for_department}/>}
         { biography && (
           <section className="overview-section">
             <h2>Biography</h2>
